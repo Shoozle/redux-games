@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const base_url = `https://api.rawg.io/api/games?key=1b627c982a5b4cc496e39973c0e43dcb`;
+const base_url = `https://api.rawg.io/api/games?key=${process.env.REACT_APP_RAWG_API}`;
 
 //March is 3 but comes 03
 const getCurrentMonth = () => {
