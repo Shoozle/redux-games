@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const base_url = `https://api.rawg.io/api/games?key=${process.env.RAWG_API}`;
+const base_url = `https://api.rawg.io/api/games?key=1b627c982a5b4cc496e39973c0e43dcb`;
 
 //March is 3 but comes 03
 const getCurrentMonth = () => {
@@ -31,3 +31,5 @@ const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 const popular_games = `&dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`
 
 export const popularGamesURL = () => `${base_url}${popular_games}`
+
+//console.log(base_url);
