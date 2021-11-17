@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loadGames } from "./actions/gamesAction";
-require('dotenv').config();
 
 function App() {
   
