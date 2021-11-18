@@ -18,12 +18,15 @@ const StyledGame = styled(motion.div)`
     box-shadow: 0px 5px 20px rgba(0, 0, 0, .1);
     overflow: hidden;
     text-align: center;
-    border-radius: 1rem;
+    border-radius: .5rem .5rem 0 0;
+    background-color: #eee;
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         object-position: 50%;
+        max-height: 22rem;
+        vertical-align: bottom;
     }
 `
 
