@@ -27,7 +27,7 @@ const GameDetail = () => {
                     <img src={game.background_image} alt={game.name} />
                 </div>
                 <div className="description">
-                    <p>{game.description}</p>
+                    <p>{game.description_raw}</p>
                 </div>
                 <div className="gallery">
                     {screen.results.map(screen => (
@@ -64,7 +64,7 @@ const CardShadow = styled(motion.div)`
 const Detail = styled(motion.div)`
     width: 80%;
     border-radius: 1rem;
-    padding: 2rem 20rem;
+    padding: 2rem 10rem;
     background: #eee;
     position: absolute;
     left: 10%;
