@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import { loadGames } from "../actions/gamesAction";
 import Game from "../components/Game";
+import GameDetail from "../components/GameDetail";
 
 const Home = () => {
 
@@ -20,6 +21,7 @@ const Home = () => {
 
     return (
         <GameList>
+        <GameDetail />
             <h2>Upcoming Games</h2>
             <Games>
                 {upcoming.map(game => (
