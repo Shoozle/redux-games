@@ -42,4 +42,8 @@ export const newGamesURL = () => `${base_url}${base_key_url}${new_games}`;
 
 export const gameDetailsURL = (game_id) => `${base_url}/${game_id}${base_key_url}`
 
+//GAME SCREENSHOTS
+
+export const gameImagesURL = (game_id) => `${base_url}/${game_id}/screenshots${base_key_url}`
+
 //console.log(base_url);
