@@ -1,6 +1,7 @@
 require('dotenv').config();
 
-const base_url = `https://api.rawg.io/api/games?key=${process.env.REACT_APP_RAWG_API}`;
+const base_url = `https://api.rawg.io/api/games`;
+const base_key_url = `?key=${process.env.REACT_APP_RAWG_API}`
 
 //March is 3 but comes 03
 const getCurrentMonth = () => {
@@ -32,13 +33,13 @@ const popular_games = `&dates=${lastYear},${currentDate}&ordering=-rating&page_s
 const upcoming_games = `&dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
 const new_games = `&dates=${lastYear},${currentDate}&ordering=-released&page_size=10`;
 
-export const popularGamesURL = () => `${base_url}${popular_games}`;
-export const upcomingGamesURL = () => `${base_url}${upcoming_games}`;
-export const newGamesURL = () => `${base_url}${new_games}`;
+export const popularGamesURL = () => `${base_url}${base_key_url}${popular_games}`;
+export const upcomingGamesURL = () => `${base_url}${base_key_url}${upcoming_games}`;
+export const newGamesURL = () => `${base_url}${base_key_url}${new_games}`;
 
 
 //GAME DETAILS
 
-export const gameDetailsURL = (game_id) => `${base_url}/games/${game_id}`
+export const gameDetailsURL = (game_id) => `${base_url}/${game_id}${base_key_url}`
 
 //console.log(base_url);
