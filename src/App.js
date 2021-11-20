@@ -5,7 +5,6 @@ function App() {
 
   return (
     <div className="App">
-
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Home />}/>

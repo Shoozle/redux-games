@@ -4,8 +4,11 @@ import styled from "styled-components"
 import { useNavigate } from "react-router"
 import { smallImage } from "../util"
 
-const GameDetail = () => {
+const GameDetail = ({pathId}) => {
     const { screen, game, isLoading } = useSelector(state => state.detail)
+
+    //Path id is string when passed in, convert to int
+    const numId = +pathId;
 
     const navigate = useNavigate();
 
@@ -13,16 +16,18 @@ const GameDetail = () => {
         const element = e.target;
         if (element.classList.contains('shadow')) {
             document.body.style.overflow = 'auto';
-            navigate('/')
-        }
 
+            navigate('/');
+        }
     }
+
+    console.log('gamedetail', typeof pathId)
 
     return (
         <>
             {!isLoading && (
                 <CardShadow className="shadow" onClick={exitDetailHandler}>
-                    <Detail>
+                    <Detail >
                         <Stats>
                             <div className="rating">
                                 <h3>{game.name}</h3>
@@ -109,7 +114,7 @@ const Platforms = styled(motion.div)`
 `
 
 const Media = styled(motion.div)`
-    margin-top: 5rem;
+    margin: 5rem;
     img {
         width: 100%;
         height: 60vh;
@@ -118,7 +123,7 @@ const Media = styled(motion.div)`
 `
 
 const Description = styled(motion.div)`
-    margin-top: 5rem;
+    margin: 2.5rem 0;
 `
 
 export default GameDetail

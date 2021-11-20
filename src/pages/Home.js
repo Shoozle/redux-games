@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
 import { loadGames } from "../actions/gamesAction";
 import Game from "../components/Game";
@@ -12,47 +12,46 @@ const Home = () => {
 
     const location = useLocation();
     const pathId = location.pathname.split('/')[2];
-
-
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(loadGames())
+        dispatch(loadGames())
     }, [dispatch])
 
     //get data back
-    const {popular, newGames, upcoming} = useSelector(state => state.games)
-    
+    const { popular, newGames, upcoming } = useSelector(state => state.games)
 
     return (
         <GameList>
-        {pathId && <GameDetail />}
-            <h2>Upcoming Games</h2>
-            <Games>
-                {upcoming.map(game => (
-                    <Game name={game.name} released={game.released} key={game.id} id={game.id} image={game.background_image}/>
-                ))}
-            </Games>
-            <h2>Popular Games</h2>
-            <Games>
-                {popular.map(game => (
-                    <Game name={game.name} released={game.released} key={game.id} id={game.id} image={game.background_image}/>
-                ))}
-            </Games>
-            <h2>New Games</h2>
-            <Games>
-                {newGames.map(game => (
-                    <Game name={game.name} released={game.released} key={game.id} id={game.id} image={game.background_image}/>
-                ))}
-            </Games>
+                <AnimatePresence>
+                    {pathId && <GameDetail key="game-detail" pathId={pathId}/>}
+                </AnimatePresence>
+                <h2>Upcoming Games</h2>
+                <Games>
+                    {upcoming.map(game => (
+                        <Game name={game.name} released={game.released} key={game.id} id={game.id} image={game.background_image} />
+                    ))}
+                </Games>
+                <h2>Popular Games</h2>
+                <Games>
+                    {popular.map(game => (
+                        <Game name={game.name} released={game.released} key={game.id} id={game.id} image={game.background_image} />
+                    ))}
+                </Games>
+                <h2>New Games</h2>
+                <Games>
+                    {newGames.map(game => (
+                        <Game name={game.name} released={game.released} key={game.id} id={game.id} image={game.background_image} />
+                    ))}
+                </Games>
         </GameList>
     )
 }
 
 const GameList = styled(motion.div)`
-    padding: 0rem 5rem;
+    padding: 0 5rem;
     h2 {
-        padding: 5rem 0rem;
+        padding: 5rem 0;
     }
 `
 
