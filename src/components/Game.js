@@ -9,6 +9,7 @@ const Game = ({ name, released, image, id }) => {
 
     const dispatch = useDispatch();
     const loadDetailHandler = () => {
+        document.body.style.overflow = "hidden";
         dispatch(loadDetail(id))
     }
 
@@ -36,7 +37,6 @@ const StyledGame = styled(motion.div)`
         object-fit: cover;
         object-position: 50%;
         max-height: 22rem;
-        vertical-align: bottom;
     }
 `
 
