@@ -1,9 +1,9 @@
 const initialState = {
     game: {
-
+        platforms: []
     },
     screen: {
-
+        results: []
     }
 }
 
