@@ -18,16 +18,16 @@ const Game = ({ name, released, image, id }) => {
     return (
         <StyledGame layoutId={id} onClick={loadDetailHandler}>
             <Link to={`/game/${id}`}>
-                <h3>{name}</h3>
+                <motion.h3 layoutId={`title ${id}`}>{name}</motion.h3>
                 <p>{released}</p>
-                <img src={smallImage(image, 640)} alt={name} />
+                <motion.img layoutId={`image ${id}`} src={smallImage(image, 640)} alt={name} />
             </Link>
         </StyledGame>
     )
 }
 
 const StyledGame = styled(motion.div)`
-    min-height: 30vh;
+    min-height: 22rem;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, .1);
     overflow: hidden;
     text-align: center;
@@ -35,10 +35,8 @@ const StyledGame = styled(motion.div)`
     background-color: #eee;
     img {
         width: 100%;
-        height: 100%;
+        height: 18rem;
         object-fit: cover;
-        object-position: 50%;
-        max-height: 22rem;
     }
 `
 

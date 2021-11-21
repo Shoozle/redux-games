@@ -21,16 +21,14 @@ const GameDetail = ({pathId}) => {
         }
     }
 
-    console.log('gamedetail', typeof pathId)
-
     return (
         <>
             {!isLoading && (
                 <CardShadow className="shadow" onClick={exitDetailHandler}>
-                    <Detail >
+                    <Detail layoutId={numId}>
                         <Stats>
                             <div className="rating">
-                                <h3>{game.name}</h3>
+                                <motion.h3 layoutId={`title ${numId}`}>{game.name}</motion.h3>
                                 <p>Rating: {game.rating}</p>
                             </div>
                             <Info>
@@ -43,16 +41,16 @@ const GameDetail = ({pathId}) => {
                             </Info>
                         </Stats>
                         <Media>
-                            <img src={smallImage(game.background_image, 1280)} alt={game.name} />
+                            <motion.img layoutId={`image ${numId}`} src={smallImage(game.background_image, 1280)} alt={game.name} />
                         </Media>
                         <Description>
                             <p>{game.description_raw}</p>
                         </Description>
-                        <div className="gallery">
+                        <Gallery>
                             {screen.results.map(screen => (
                                 <img key={screen.id} src={smallImage(screen.image, 1280)} alt="game" />
                             ))}
-                        </div>
+                        </Gallery>
                     </Detail>
                 </CardShadow>
             )}
@@ -90,9 +88,6 @@ const Detail = styled(motion.div)`
     position: absolute;
     left: 10%;
     color: black;
-    img{
-        width: 100%;
-    }
 `
 
 const Stats = styled(motion.div)`
@@ -117,13 +112,19 @@ const Media = styled(motion.div)`
     margin: 5rem;
     img {
         width: 100%;
-        height: 60vh;
-        object-fit: cover;
     }
 `
 
 const Description = styled(motion.div)`
     margin: 2.5rem 0;
+`
+
+const Gallery = styled(motion.div)`
+    img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
 `
 
 export default GameDetail
