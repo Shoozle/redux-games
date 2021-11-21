@@ -4,7 +4,14 @@ import styled from "styled-components"
 import { useNavigate } from "react-router"
 import { smallImage } from "../util"
 
-const GameDetail = ({pathId}) => {
+//Images
+import playstation from '../img/playstation.svg';
+import nintendo from '../img/nintendo.svg';
+import apple from '../img/apple.svg';
+import xbox from '../img/xbox.svg';
+import steam from '../img/steam.svg';
+
+const GameDetail = ({ pathId }) => {
     const { screen, game, isLoading } = useSelector(state => state.detail)
 
     //Path id is string when passed in, convert to int
@@ -16,10 +23,30 @@ const GameDetail = ({pathId}) => {
         const element = e.target;
         if (element.classList.contains('shadow')) {
             document.body.style.overflow = 'auto';
-
             navigate('/');
         }
     }
+
+    const getPlatform = (platform) => {
+        switch (platform) {
+            case "PlayStation 4":
+                return playstation;
+            case "Xbox One":
+                return xbox;
+            case "Nintendo Switch":
+                return nintendo;
+            case "Xbox Series S/X":
+                return xbox;
+            case "PlayStation 5":
+                return playstation;
+            case "PC":
+                return steam;
+            default:
+                return steam;
+        }
+    }
+
+
 
     return (
         <>
@@ -35,7 +62,7 @@ const GameDetail = ({pathId}) => {
                                 <h3>Platforms</h3>
                                 <Platforms>
                                     {game.platforms.map(data => (
-                                        <h3 key={data.platform.id}>{data.platform.name}</h3>
+                                        <img src={getPlatform(data.platform.name)} alt={data.platform.name} key={data.platform.id} />
                                     ))}
                                 </Platforms>
                             </Info>
@@ -65,7 +92,8 @@ const CardShadow = styled(motion.div)`
     top: 0;
     left: 0;
     position: fixed;
-    background: rgba(0, 0, 0, .1);
+    background: rgba(0, 0, 0, .3);
+    z-index: 8;
     &::-webkit-scrollbar {
         width:.5rem;
     }
@@ -88,6 +116,7 @@ const Detail = styled(motion.div)`
     position: absolute;
     left: 10%;
     color: black;
+    z-index: 10;
 `
 
 const Stats = styled(motion.div)`
@@ -104,7 +133,10 @@ const Platforms = styled(motion.div)`
     display: flex;
     justify-content: space-evenly;
     img {
-        margin-left: 3rem;
+        width: 2.5rem;
+        margin: 0 1rem;
+        fill: darkgray;
+        stroke: darkgray;
     }
 `
 
