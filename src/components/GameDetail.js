@@ -10,6 +10,8 @@ import nintendo from '../img/nintendo.svg';
 import apple from '../img/apple.svg';
 import xbox from '../img/xbox.svg';
 import steam from '../img/steam.svg';
+import star from '../img/star.svg';
+import starFilled from '../img/star-filled.svg';
 
 const GameDetail = ({ pathId }) => {
     const { screen, game, isLoading } = useSelector(state => state.detail)
@@ -42,10 +44,23 @@ const GameDetail = ({ pathId }) => {
             case "PC":
                 return steam;
             default:
-                return steam;
+                return apple;
         }
     }
 
+    const getStars = () => {
+        const stars = [];
+        const rating = Math.floor(game.rating);
+
+        for (let i=0; i<5; i++) {
+            if (i <= rating) {
+                stars.push(<img alt="star" key={i} src={starFilled}/>)
+            } else {
+                stars.push(<img alt="star" key={i} src={star}/>)
+            }
+        }
+        return stars;
+    }
 
 
     return (
@@ -56,7 +71,8 @@ const GameDetail = ({ pathId }) => {
                         <Stats>
                             <div className="rating">
                                 <motion.h3 layoutId={`title ${numId}`}>{game.name}</motion.h3>
-                                <p>Rating: {game.rating}</p>
+                                <p>{game.rating}</p>
+                                {getStars()}
                             </div>
                             <Info>
                                 <h3>Platforms</h3>
@@ -123,6 +139,9 @@ const Stats = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    img {
+        display: inline-block;
+    }
 `
 
 const Info = styled(motion.div)`
