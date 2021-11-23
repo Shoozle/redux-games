@@ -3,9 +3,7 @@ import { motion } from "framer-motion";
 import { fetchSearch } from "../actions/gamesAction";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-
-
-
+import { fadeIn } from "../animations";
 
 const Nav = () => {
 
@@ -29,7 +27,7 @@ const Nav = () => {
     
 
     return (
-        <StyledNav>
+        <StyledNav variants={fadeIn} initial="hidden" animate="show" >
             <Logo onClick={clearSearch}>  
             <h1>Ignite</h1>
             </Logo>
