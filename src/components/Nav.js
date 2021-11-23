@@ -1,16 +1,38 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { fetchSearch } from "../actions/gamesAction";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+
+
+
 
 const Nav = () => {
+
+
+    const dispatch = useDispatch();
+    const [textInput, setTextInput] = useState('');
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(fetchSearch(textInput));
+        setTextInput('');
+    }
+
+    const inputHandler = (e) => {
+        setTextInput(e.target.value);
+    }
+    
+
     return (
         <StyledNav>
             <Logo>
             <h1>Ignite</h1>
             </Logo>
-            <div className="search">
-                    <input type="text" />
-                    <button>Search</button>
-            </div>
+            <form className="search" >
+                    <input onChange={inputHandler} value={textInput} type="text" />
+                    <button type="submit" onClick={submitHandler} >Search</button>
+            </form>
         </StyledNav>
     )          
 }
