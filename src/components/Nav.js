@@ -22,11 +22,15 @@ const Nav = () => {
     const inputHandler = (e) => {
         setTextInput(e.target.value);
     }
+
+    const clearSearch = () => {
+        dispatch({type: "CLEAR_SEARCH"})
+    }
     
 
     return (
         <StyledNav>
-            <Logo>
+            <Logo onClick={clearSearch}>  
             <h1>Ignite</h1>
             </Logo>
             <form className="search" >

@@ -19,11 +19,22 @@ const Home = () => {
     }, [dispatch])
 
     //get data back
-    const { popular, newGames, upcoming } = useSelector(state => state.games)
+    const { popular, newGames, upcoming, searched } = useSelector(state => state.games)
 
     return (
         <GameList>
             <AnimateSharedLayout type="crossfade">
+                <AnimatePresence>
+                    {pathId && <GameDetail key="game-detail" pathId={pathId} />}
+                </AnimatePresence>
+                {searched.length > 0 && (<div className="Searched">
+                    <h2>Searched</h2>
+                    <Games>
+                        {searched.map(game => (
+                            <Game name={game.name} released={game.released} key={game.id} id={game.id} image={game.background_image} />
+                        ))}
+                    </Games>
+                </div>)}
                 <h2>Upcoming Games</h2>
                 <Games>
                     {upcoming.map(game => (
@@ -42,9 +53,7 @@ const Home = () => {
                         <Game name={game.name} released={game.released} key={game.id} id={game.id} image={game.background_image} />
                     ))}
                 </Games>
-                <AnimatePresence>
-                    {pathId && <GameDetail key="game-detail" pathId={pathId}/>}
-                </AnimatePresence>
+
             </AnimateSharedLayout>
         </GameList>
     )
